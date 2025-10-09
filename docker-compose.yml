@@ -1,5 +1,5 @@
 services:
-  db:
+  db-postgresql:
     image: postgres:18.0
     ports:
       - 5432:5432
@@ -8,9 +8,26 @@ services:
       POSTGRES_USER: admin
       POSTGRES_PASSWORD: password
       POSTGRES_DB: admin_db
+      TZ: "Asia/Tokyo"
     volumes:
-      - ./initdb:/docker-entrypoint-initdb.d
+      - ./initdb/postgresql:/docker-entrypoint-initdb.d
       - db_playground_postgres_data:/var/lib/postgresql/data
+
+  db-mysql:
+    image: mysql:8.4.6
+    ports:
+      - 3306:3306
+    environment:
+      # ref: https://hub.docker.com/_/mysql#how-to-use-this-image
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: admin_db
+      TZ: "Asia/Tokyo"
+    volumes:
+      - ./initdb/mysql:/docker-entrypoint-initdb.d
+      - db_playground_mysql_data:/var/lib/mysql
 
 volumes:
   db_playground_postgres_data:
+  db_playground_mysql_data:
