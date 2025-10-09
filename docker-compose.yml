@@ -1,0 +1,16 @@
+services:
+  db:
+    image: postgres:18.0
+    ports:
+      - 5432:5432
+    environment:
+      # admin user
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: admin_db
+    volumes:
+      - ./initdb:/docker-entrypoint-initdb.d
+      - db_playground_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  db_playground_postgres_data:
