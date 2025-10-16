@@ -10,7 +10,7 @@ services:
       POSTGRES_DB: admin_db
       TZ: "Asia/Tokyo"
     volumes:
-      - ./initdb/postgresql:/docker-entrypoint-initdb.d
+      - ./docker/initdb/postgresql:/docker-entrypoint-initdb.d
       - db_playground_postgres_data:/var/lib/postgresql/data
 
   db-mysql:
@@ -22,7 +22,7 @@ services:
       MYSQL_ROOT_PASSWORD: password
       TZ: "Asia/Tokyo"
     volumes:
-      - ./initdb/mysql:/docker-entrypoint-initdb.d
+      - ./docker/initdb/mysql:/docker-entrypoint-initdb.d
       - db_playground_mysql_data:/var/lib/mysql
 
 volumes:
