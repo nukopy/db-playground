@@ -1,5 +1,6 @@
 ## for local
 .vscode/
+.idea/
 
 ## for Terraform
 # Local .terraform directories
