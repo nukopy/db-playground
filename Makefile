@@ -42,6 +42,32 @@ downv-mysql:
 conn-mysql:
 	docker compose exec db-mysql mysql -u app_dev_user -ppass_app_dev_user playground_db
 
+# example databases を作成
+DOWNLOAD_URL_SAKILA_DB := https://downloads.mysql.com/docs/sakila-db.tar.gz
+DOWNLOAD_URL_WORLD_DB := https://downloads.mysql.com/docs/world-db.tar.gz
+.PHONY: download-example-dbs setup-example-dbs create-sakila-db create-world-db
+
+download-example-dbs:
+	echo "Downloading sakila database..."
+	wget $(DOWNLOAD_URL_SAKILA_DB) -O ref/sakila-db.tar.gz
+	tar -xzf ref/sakila-db.tar.gz -C ref/
+
+	echo "Downloading world database..."
+	wget $(DOWNLOAD_URL_WORLD_DB) -O ref/world-db.tar.gz
+	tar -xzf ref/world-db.tar.gz -C ref/
+
+# ref: https://dev.mysql.com/doc/refman/8.0/ja/mysql-batch-commands.html
+create-sakila-db:
+	docker compose exec -T db-mysql mysql -u app_dev_user -ppass_app_dev_user playground_db < ref/sakila-db/sakila-schema.sql
+	docker compose exec -T db-mysql mysql -u app_dev_user -ppass_app_dev_user playground_db < ref/sakila-db/sakila-data.sql
+
+create-world-db:
+	docker compose exec -T db-mysql mysql -u app_dev_user -ppass_app_dev_user playground_db < ref/world-db/world.sql
+
+setup-example-dbs:
+	make create-sakila-db
+	make create-world-db
+
 # ---------------------------------------------------------------
 # common
 # ---------------------------------------------------------------
