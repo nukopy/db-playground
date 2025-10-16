@@ -117,12 +117,12 @@ Threads: 2  Questions: 13  Slow queries: 0  Opens: 139  Flush tables: 3  Open ta
 --------------
 
 mysql> show grants for app_dev_user;
-+---------------------------------------------+
-| Grants for app_dev_user@%                   |
-+---------------------------------------------+
-| GRANT USAGE ON *.* TO `app_dev_user`@`%`    |
-| GRANT `group_dev`@`%` TO `app_dev_user`@`%` |
-+---------------------------------------------+
++------------------------------------------+
+| Grants for app_dev_user@%                |
++------------------------------------------+
+| GRANT USAGE ON *.* TO `app_dev_user`@`%` |
+| GRANT `admin`@`%` TO `app_dev_user`@`%`  |
++------------------------------------------+
 2 rows in set (0.00 sec)
 
 -- same as above
@@ -136,12 +136,107 @@ mysql> show grants for `app_dev_user`@'%';
 2 rows in set (0.00 sec)
 
 mysql> select current_role();
-+-----------------+
-| current_role()  |
-+-----------------+
-| `group_dev`@`%` |
-+-----------------+
++----------------+
+| current_role() |
++----------------+
+| `admin`@`%`    |
++----------------+
 1 row in set (0.00 sec)
+```
+
+- Initialize database with example databases
+
+Example databases are [sakila](https://dev.mysql.com/doc/sakila/en/) and [world](https://dev.mysql.com/doc/world-setup/en/) from MySQL documentation.
+
+```sh
+make download-example-dbs
+make setup-example-dbs
+```
+
+Make sure example databases are created correctly.
+
+- Connect to MySQL
+
+```sh
+make conn-mysql
+```
+
+- Show databases
+
+You can see `sakila` and `world` databases are created.
+
+```txt
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| playground_db      |
+| sakila             |
+| sys                |
+| world              |
++--------------------+
+7 rows in set (0.00 sec)
+```
+
+- Show tables in `sakila` database
+
+```txt
+mysql> use sakila;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++----------------------------+
+| Tables_in_sakila           |
++----------------------------+
+| actor                      |
+| actor_info                 |
+| address                    |
+| category                   |
+| city                       |
+| country                    |
+| customer                   |
+| customer_list              |
+| film                       |
+| film_actor                 |
+| film_category              |
+| film_list                  |
+| film_text                  |
+| inventory                  |
+| language                   |
+| nicer_but_slower_film_list |
+| payment                    |
+| rental                     |
+| sales_by_film_category     |
+| sales_by_store             |
+| staff                      |
+| staff_list                 |
+| store                      |
++----------------------------+
+23 rows in set (0.00 sec)
+```
+
+- Show tables in `world` database
+
+```txt
+mysql> use world;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+mysql> show tables;
++-----------------+
+| Tables_in_world |
++-----------------+
+| city            |
+| country         |
+| countrylanguage |
++-----------------+
+3 rows in set (0.00 sec)
 ```
 
 ### on AWS with Terraform
