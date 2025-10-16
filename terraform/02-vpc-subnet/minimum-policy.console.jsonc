@@ -1,0 +1,39 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "Statement1",
+			"Effect": "Allow",
+			"Action": [
+				"ec2:CreateVpc",
+				"ec2:CreateTags",
+				"ec2:DescribeVpcs",
+				"ec2:DescribeVpcAttribute",
+				"ec2:DeleteVpc",
+				"ec2:ModifyVpcAttribute",
+				"ec2:CreateSubnet",
+				"ec2:DeleteSubnet",
+				"ec2:CreateRouteTable",
+				"ec2:DeleteRouteTable",
+				"ec2:DescribeSubnets",
+				"ec2:DescribeNetworkInterfaces",
+				"ec2:DescribeRouteTables",
+				"ec2:AssociateRouteTable",
+				"ec2:DisassociateRouteTable",
+				// VPC マネージドコンソール用
+				"ec2:DescribeNetworkAcls",
+				"ec2:DescribeDhcpOptions",
+				"ec2:DescribeAccountAttributes",
+				"ec2:DescribeNatGateways",
+				"ec2:DescribeInternetGateways",
+				"ec2:DescribeAvailabilityZones",
+				"ec2:DescribeEgressOnlyInternetGateways",
+				"ec2:DescribeVpcEndpoints",
+				"ec2:DescribeFlowLogs",
+				"route53resolver:ListFirewallRuleGroupAssociations",
+				"internetmonitor:ListMonitors"
+			],
+			"Resource": ["*"]
+		}
+	]
+}
