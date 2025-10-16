@@ -6,21 +6,23 @@
 -- 実行者:
 --   MySQL 管理ユーザー (例: root)
 -- ===============================================================
--- 所有者ロール (MySQL では DB 所有者の概念がないため、全権限を付与するロールとして扱う)
-create ROLE `owner_app`;
-
 -- ref: MySQL 5.7 -> 8.0 collation (照合順序) https://speakerdeck.com/fujiwara3/offers-web-performance-tuning
 create database `playground_db` character set utf8mb4 collate utf8mb4_0900_ai_ci;
 
 -- MySQL では全テーブル/ビュー/ストアドオブジェクトをまとめて扱うため、先に USE しておく
 use `playground_db`;
 
-grant all privileges on `playground_db`.* to `owner_app` with
-grant option;
-
 -- ===============================================================
 -- ロールの作成
 -- ===============================================================
+-- ---------------------------------------------------------------
+-- 所有者ロール (MySQL では DB 所有者の概念がないため、全権限を付与するロールとして扱う)
+-- ---------------------------------------------------------------
+create ROLE `admin`;
+
+grant all privileges on *.* to `admin` with
+grant option;
+
 -- ---------------------------------------------------------------
 -- 読み書き用ロール
 -- ---------------------------------------------------------------
@@ -104,6 +106,7 @@ set default ROLE `group_app_migrate` to `app_migration_user` @`%`;
 -- ユーザ作成
 create USER `app_dev_user` @`%` identified BY 'pass_app_dev_user';
 
-grant `group_dev` to `app_dev_user` @`%`;
+-- grant `group_dev` to `app_dev_user` @`%`;
+grant `admin` to `app_dev_user` @`%`;
 
-set default ROLE `group_dev` to `app_dev_user` @`%`;
+set default ROLE `admin` to `app_dev_user` @`%`;
