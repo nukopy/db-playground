@@ -7,6 +7,7 @@ This is a playground for me to experiment with different database technologies.
 - Docker
 - Docker Compose
 - Node.js v22.16.0 or later (for Codex)
+- GNU Wget 1.24.5 or later
 
 ## Commands
 
