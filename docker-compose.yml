@@ -20,9 +20,6 @@ services:
     environment:
       # ref: https://hub.docker.com/_/mysql#how-to-use-this-image
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_USER: admin
-      MYSQL_PASSWORD: password
-      MYSQL_DATABASE: admin_db
       TZ: "Asia/Tokyo"
     volumes:
       - ./initdb/mysql:/docker-entrypoint-initdb.d
