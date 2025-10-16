@@ -1,6 +1,7 @@
 ## for local
 .vscode/
 .idea/
+ref/sakila-db*
 
 ## for Terraform
 # Local .terraform directories
