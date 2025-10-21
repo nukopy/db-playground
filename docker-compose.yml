@@ -10,7 +10,7 @@ services:
       POSTGRES_DB: admin_db
       TZ: "Asia/Tokyo"
     volumes:
-      - ./docker/initdb/postgresql:/docker-entrypoint-initdb.d
+      - ./docker/postgresql/initdb:/docker-entrypoint-initdb.d
       - db_playground_postgres_data:/var/lib/postgresql/data
 
   db-mysql:
@@ -22,7 +22,11 @@ services:
       MYSQL_ROOT_PASSWORD: password
       TZ: "Asia/Tokyo"
     volumes:
-      - ./docker/initdb/mysql:/docker-entrypoint-initdb.d
+      # MySQL の設定ファイル
+      - ./docker/mysql/etc/my.cnf:/etc/my.cnf
+      - ./docker/mysql/etc/mysql/conf.d:/etc/mysql/conf.d
+      # MySQL の DB 初期化スクリプト
+      - ./docker/mysql/initdb:/docker-entrypoint-initdb.d
       - db_playground_mysql_data:/var/lib/mysql
 
 volumes:
