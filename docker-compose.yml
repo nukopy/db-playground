@@ -20,6 +20,8 @@ services:
     environment:
       # ref: https://hub.docker.com/_/mysql#how-to-use-this-image
       MYSQL_ROOT_PASSWORD: password
+      LANG: C.UTF-8
+      LC_ALL: C.UTF-8
       TZ: "Asia/Tokyo"
     volumes:
       # MySQL の設定ファイル
