@@ -1,5 +1,4 @@
 ## for local
-.vscode/
 .idea/
 ref/sakila-db*
 ref/world-db*
