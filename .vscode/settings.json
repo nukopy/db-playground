@@ -1,0 +1,10 @@
+{
+	"[sql]": {
+		"editor.formatOnPaste": false,
+		"editor.formatOnSave": false
+	},
+	"triggerTaskOnSave.tasks": {
+		"format:sql": ["**/*.sql"],
+		"echoo": ["**/*.sql"]
+	}
+}
