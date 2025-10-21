@@ -1,0 +1,16 @@
+{
+  "name": "db-playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "format:sql": "sql-formatter --fix --config ./.sql-formatter.json"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.18.3",
+  "devDependencies": {
+    "sql-formatter": "^15.6.10"
+  }
+}
