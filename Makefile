@@ -42,6 +42,10 @@ downv-mysql:
 conn-mysql:
 	docker compose exec db-mysql mysql -u app_dev_user -ppass_app_dev_user playground_db
 
+# bash に接続
+conn-mysql-bash:
+	docker compose exec db-mysql bash
+
 # example databases を作成
 DOWNLOAD_URL_SAKILA_DB := https://downloads.mysql.com/docs/sakila-db.tar.gz
 DOWNLOAD_URL_WORLD_DB := https://downloads.mysql.com/docs/world-db.tar.gz
