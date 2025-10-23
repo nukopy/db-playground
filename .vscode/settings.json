@@ -4,7 +4,6 @@
 		"editor.formatOnSave": false
 	},
 	"triggerTaskOnSave.tasks": {
-		"format:sql": ["**/*.sql"],
-		"echoo": ["**/*.sql"]
+		"format:sql": ["**/*.sql"]
 	}
 }
