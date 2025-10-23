@@ -1,7 +1,6 @@
 ## for local
 .idea/
-ref/sakila-db*
-ref/world-db*
+ref/*.tar.gz
 
 ## for Terraform
 # Local .terraform directories
